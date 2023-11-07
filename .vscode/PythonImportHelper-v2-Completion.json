@@ -1,0 +1,226 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "unittest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "unittest",
+        "description": "unittest",
+        "detail": "unittest",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "patch",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "mock_open",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "get_column_values",
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "isExtraImport": true,
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_average_contract_ticket",
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "isExtraImport": true,
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_rate_weighted_average",
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "isExtraImport": true,
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "convert_to_float",
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "isExtraImport": true,
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_term_weighted_average",
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "isExtraImport": true,
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_bad_values",
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "isExtraImport": true,
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_bad_values_by_loss",
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "isExtraImport": true,
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "mean",
+        "importPath": "statistics",
+        "description": "statistics",
+        "isExtraImport": true,
+        "detail": "statistics",
+        "documentation": {}
+    },
+    {
+        "label": "StepOneTests",
+        "kind": 6,
+        "importPath": "step_one.tests.test_ticket",
+        "description": "step_one.tests.test_ticket",
+        "peekOfCode": "class StepOneTests(unittest.TestCase):\n    def test_get_column_values_must_return_the_values_of_a_specific_column(\n        self, mock_file\n    ):\n        csv_file_path = \"fake_path_to_csv.csv\"\n        response = get_column_values(csv_file_path, \"prazo\")\n        self.assertEqual(response.tolist(), [\"6\", \"12,6\", \"10\", \"6\"])\n    def test_get_average_contracts_ticket(self, mock_file):\n        csv_file_path = \"fake_path_to_csv.csv\"\n        response = get_average_contract_ticket(csv_file_path, \"valor_contrato\")",
+        "detail": "step_one.tests.test_ticket",
+        "documentation": {}
+    },
+    {
+        "label": "mocked_data",
+        "kind": 5,
+        "importPath": "step_one.tests.test_ticket",
+        "description": "step_one.tests.test_ticket",
+        "peekOfCode": "mocked_data = pd.DataFrame.from_dict(\n    {\n        \"taxa\": [\"4,87\", \"5\", \"4,3\", \"4,4\"],\n        \"atraso_corrente\": [\"332\", \"0\", \"30\", \"180\"],\n        \"prazo\": [\"6\", \"12,6\", \"10\", \"6\"],\n        \"valor_contrato\": [\"1800,2514\", \"4500,3356\", \"400,0023\", \"700,1245\"],\n        \"valor_contrato_mais_juros\": [\"2200\", \"8000\", \"600\", \"900\"],\n        \"valor_em_aberto\": [\"1300\", \"0\", \"0\", \"0\"],\n    }\n)",
+        "detail": "step_one.tests.test_ticket",
+        "documentation": {}
+    },
+    {
+        "label": "get_column_values",
+        "kind": 2,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "def get_column_values(file_name, column_name):\n    \"\"\"\n    This method reads a csv file separated by semicolon, discard NaN values, and return valid values\n    of a column received by parameter.\n    \"\"\"\n    data = pd.read_csv(file_name, sep=\";\").dropna(how=\"all\")\n    data_values = data[column_name]\n    return data_values\ndef convert_to_float(values):\n    \"\"\"",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "convert_to_float",
+        "kind": 2,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "def convert_to_float(values):\n    \"\"\"\n    This method receives a list of comma-separated values, replaces the commas with\n    periods and converts them to float type.\n    \"\"\"\n    float_values = values.str.replace(\",\", \".\").astype(float)\n    return float_values\ndef get_average_contract_ticket(file_name, contracts_values_column):\n    \"\"\"\n    This method converts contract values into float and returns the average that",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_average_contract_ticket",
+        "kind": 2,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "def get_average_contract_ticket(file_name, contracts_values_column):\n    \"\"\"\n    This method converts contract values into float and returns the average that\n    corresponds to the average contract ticket in the sample.\n    \"\"\"\n    values = get_column_values(file_name, contracts_values_column)\n    formated_values = convert_to_float(values)\n    average = formated_values.mean()\n    return average\ndef get_rate_weighted_average(contract_values, rate_weights):",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_rate_weighted_average",
+        "kind": 2,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "def get_rate_weighted_average(contract_values, rate_weights):\n    float_contract_values = convert_to_float(contract_values)\n    float_weights = convert_to_float(rate_weights)\n    weighted = (\n        float_contract_values * (float_weights / 100)\n    ).sum() / float_contract_values.sum()\n    formated_weighted = round((weighted * 100), 4)\n    return formated_weighted\ndef get_term_weighted_average(contract_values, term_weights):\n    float_contract_values = convert_to_float(contract_values)",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_term_weighted_average",
+        "kind": 2,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "def get_term_weighted_average(contract_values, term_weights):\n    float_contract_values = convert_to_float(contract_values)\n    float_weights = convert_to_float(term_weights)\n    weighted = (\n        float_contract_values * float_weights\n    ).sum() / float_contract_values.sum()\n    formated_weighted = round(weighted, 2)\n    return formated_weighted\ndef get_bad_values(file_name):\n    delay = get_column_values(file_name, \"atraso_corrente\")",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_bad_values",
+        "kind": 2,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "def get_bad_values(file_name):\n    delay = get_column_values(file_name, \"atraso_corrente\")\n    delay_int_values = delay.astype(int)\n    bad_values = np.where(delay_int_values > 180, 1, 0)\n    is_bad = bad_values.tolist().count(1)\n    is_not_bad = bad_values.tolist().count(0)\n    return is_bad, is_not_bad\ndef get_bad_values_by_loss(file_name):\n    data_frame = pd.read_csv(file_name, sep=\";\").dropna(how=\"all\")\n    # dataframe com valores de contratos com atraso superior a 180 dias",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_bad_values_by_loss",
+        "kind": 2,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "def get_bad_values_by_loss(file_name):\n    data_frame = pd.read_csv(file_name, sep=\";\").dropna(how=\"all\")\n    # dataframe com valores de contratos com atraso superior a 180 dias\n    bad_payers_df = data_frame[data_frame[\"atraso_corrente\"] > 180]\n    formated_interest_values = convert_to_float(\n        bad_payers_df[\"valor_contrato_mais_juros\"]\n    )\n    formated_open_value = convert_to_float(bad_payers_df[\"valor_em_aberto\"])\n    loss = (formated_open_value / formated_interest_values).round().astype(int)\n    # transformar em 1 e 0 e comparar (arredondando pra cima e/ou pra baixo)",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "CSV_FILE",
+        "kind": 5,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "CSV_FILE = \"openco_etapa1_dataset.csv\"\ndef get_column_values(file_name, column_name):\n    \"\"\"\n    This method reads a csv file separated by semicolon, discard NaN values, and return valid values\n    of a column received by parameter.\n    \"\"\"\n    data = pd.read_csv(file_name, sep=\";\").dropna(how=\"all\")\n    data_values = data[column_name]\n    return data_values\ndef convert_to_float(values):",
+        "detail": "step_one.main",
+        "documentation": {}
+    }
+]
