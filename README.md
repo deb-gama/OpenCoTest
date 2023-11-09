@@ -10,6 +10,8 @@ PySpark
 Numpy
 Pytest
 
+## ATENÇÃO:
+Devido a problemas com o LFS do Github, tive que excluir os arquivos json relacionados a etapa 2 do teste, portanto, caso queiram rodar as funções, será preciso adicioná-los manualmente à pasta `step_two`.
 
 # Comandos
 Para disparar os métodos e ver os logs com as resoluções, entre na pasta desejada (`step_one` ou `step_two`) e rode:
