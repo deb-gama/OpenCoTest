@@ -39,8 +39,11 @@ def get_average_contract_ticket(file_name, contracts_values_column):
 
 
 def get_rate_weighted_average(contract_values, rate_weights):
-    float_contract_values = convert_to_float(contract_values)
-    float_weights = convert_to_float(rate_weights)
+    values = get_column_values(CSV_FILE, contract_values)
+    weight_values = get_column_values(CSV_FILE, rate_weights)
+
+    float_contract_values = convert_to_float(values)
+    float_weights = convert_to_float(weight_values)
 
     weighted = (
         float_contract_values * (float_weights / 100)
@@ -51,8 +54,11 @@ def get_rate_weighted_average(contract_values, rate_weights):
 
 
 def get_term_weighted_average(contract_values, term_weights):
-    float_contract_values = convert_to_float(contract_values)
-    float_weights = convert_to_float(term_weights)
+    values = get_column_values(CSV_FILE, contract_values)
+    weight_values = get_column_values(CSV_FILE, term_weights)
+
+    float_contract_values = convert_to_float(values)
+    float_weights = convert_to_float(weight_values)
 
     weighted = (
         float_contract_values * float_weights
@@ -89,7 +95,20 @@ def get_bad_values_by_loss(file_name):
 
     bad_by_loss = loss.tolist().count(1)
     not_bad_by_loss = loss.tolist().count(0)
-    # print(len(new_df['atraso_corrente'].tolist()))
-    print(loss.tolist())
 
     return bad_by_loss, not_bad_by_loss
+
+
+ticket = get_average_contract_ticket("openco_etapa1_dataset.csv", "valor_contrato")
+term = get_term_weighted_average("valor_contrato", "prazo")
+rate = get_rate_weighted_average("valor_contrato", "taxa")
+
+bad, not_bad = get_bad_values("openco_etapa1_dataset.csv")
+bad_by_loss, not_bad_by_loss = get_bad_values_by_loss("openco_etapa1_dataset.csv")
+
+print(ticket)
+print(term)
+print(rate)
+
+print(f"Bad: {bad} - Not bad: {not_bad}")
+print(f"Bad - loss: {bad_by_loss} - Not bad - loss: {not_bad_by_loss}")
