@@ -134,6 +134,39 @@
         "documentation": {}
     },
     {
+        "label": "SparkSession",
+        "importPath": "pyspark.sql",
+        "description": "pyspark.sql",
+        "isExtraImport": true,
+        "detail": "pyspark.sql",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "pyspark.sql.functions",
+        "description": "pyspark.sql.functions",
+        "isExtraImport": true,
+        "detail": "pyspark.sql.functions",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "pyspark.sql.types",
+        "description": "pyspark.sql.types",
+        "isExtraImport": true,
+        "detail": "pyspark.sql.types",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
         "label": "StepOneTests",
         "kind": 6,
         "importPath": "step_one.tests.test_ticket",
@@ -183,7 +216,7 @@
         "kind": 2,
         "importPath": "step_one.main",
         "description": "step_one.main",
-        "peekOfCode": "def get_rate_weighted_average(contract_values, rate_weights):\n    float_contract_values = convert_to_float(contract_values)\n    float_weights = convert_to_float(rate_weights)\n    weighted = (\n        float_contract_values * (float_weights / 100)\n    ).sum() / float_contract_values.sum()\n    formated_weighted = round((weighted * 100), 4)\n    return formated_weighted\ndef get_term_weighted_average(contract_values, term_weights):\n    float_contract_values = convert_to_float(contract_values)",
+        "peekOfCode": "def get_rate_weighted_average(contract_values, rate_weights):\n    values = get_column_values(CSV_FILE, contract_values)\n    weight_values = get_column_values(CSV_FILE, rate_weights)\n    float_contract_values = convert_to_float(values)\n    float_weights = convert_to_float(weight_values)\n    weighted = (\n        float_contract_values * (float_weights / 100)\n    ).sum() / float_contract_values.sum()\n    formated_weighted = round((weighted * 100), 4)\n    return formated_weighted",
         "detail": "step_one.main",
         "documentation": {}
     },
@@ -192,7 +225,7 @@
         "kind": 2,
         "importPath": "step_one.main",
         "description": "step_one.main",
-        "peekOfCode": "def get_term_weighted_average(contract_values, term_weights):\n    float_contract_values = convert_to_float(contract_values)\n    float_weights = convert_to_float(term_weights)\n    weighted = (\n        float_contract_values * float_weights\n    ).sum() / float_contract_values.sum()\n    formated_weighted = round(weighted, 2)\n    return formated_weighted\ndef get_bad_values(file_name):\n    delay = get_column_values(file_name, \"atraso_corrente\")",
+        "peekOfCode": "def get_term_weighted_average(contract_values, term_weights):\n    values = get_column_values(CSV_FILE, contract_values)\n    weight_values = get_column_values(CSV_FILE, term_weights)\n    float_contract_values = convert_to_float(values)\n    float_weights = convert_to_float(weight_values)\n    weighted = (\n        float_contract_values * float_weights\n    ).sum() / float_contract_values.sum()\n    formated_weighted = round(weighted, 2)\n    return formated_weighted",
         "detail": "step_one.main",
         "documentation": {}
     },
@@ -221,6 +254,87 @@
         "description": "step_one.main",
         "peekOfCode": "CSV_FILE = \"openco_etapa1_dataset.csv\"\ndef get_column_values(file_name, column_name):\n    \"\"\"\n    This method reads a csv file separated by semicolon, discard NaN values, and return valid values\n    of a column received by parameter.\n    \"\"\"\n    data = pd.read_csv(file_name, sep=\";\").dropna(how=\"all\")\n    data_values = data[column_name]\n    return data_values\ndef convert_to_float(values):",
         "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "ticket",
+        "kind": 5,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "ticket = get_average_contract_ticket(\"openco_etapa1_dataset.csv\", \"valor_contrato\")\nterm = get_term_weighted_average(\"valor_contrato\", \"prazo\")\nrate = get_rate_weighted_average(\"valor_contrato\", \"taxa\")\nbad, not_bad = get_bad_values(\"openco_etapa1_dataset.csv\")\nbad_by_loss, not_bad_by_loss = get_bad_values_by_loss(\"openco_etapa1_dataset.csv\")\nprint(ticket)\nprint(term)\nprint(rate)\nprint(f\"Bad: {bad} - Not bad: {not_bad}\")\nprint(f\"Bad - loss: {bad_by_loss} - Not bad - loss: {not_bad_by_loss}\")",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "term",
+        "kind": 5,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "term = get_term_weighted_average(\"valor_contrato\", \"prazo\")\nrate = get_rate_weighted_average(\"valor_contrato\", \"taxa\")\nbad, not_bad = get_bad_values(\"openco_etapa1_dataset.csv\")\nbad_by_loss, not_bad_by_loss = get_bad_values_by_loss(\"openco_etapa1_dataset.csv\")\nprint(ticket)\nprint(term)\nprint(rate)\nprint(f\"Bad: {bad} - Not bad: {not_bad}\")\nprint(f\"Bad - loss: {bad_by_loss} - Not bad - loss: {not_bad_by_loss}\")",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "rate",
+        "kind": 5,
+        "importPath": "step_one.main",
+        "description": "step_one.main",
+        "peekOfCode": "rate = get_rate_weighted_average(\"valor_contrato\", \"taxa\")\nbad, not_bad = get_bad_values(\"openco_etapa1_dataset.csv\")\nbad_by_loss, not_bad_by_loss = get_bad_values_by_loss(\"openco_etapa1_dataset.csv\")\nprint(ticket)\nprint(term)\nprint(rate)\nprint(f\"Bad: {bad} - Not bad: {not_bad}\")\nprint(f\"Bad - loss: {bad_by_loss} - Not bad - loss: {not_bad_by_loss}\")",
+        "detail": "step_one.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_vendors_ids_list",
+        "kind": 2,
+        "importPath": "step_two.main",
+        "description": "step_two.main",
+        "peekOfCode": "def get_vendors_ids_list(lookup_file):\n    df_lookup = spark.read.csv(lookup_file, header=True, inferSchema=True)\n    vendors = list(df_lookup.select(\"vendor_id\").toPandas()[\"vendor_id\"])\n    return vendors\ndef get_total_distance_by_vendor(file_json):\n    df_json = spark.read.json(file_json).select(\"vendor_id\", \"trip_distance\")\n    vendors_list = get_vendors_ids_list(\"data-vendor_lookup.csv\")\n    data = []\n    columns = [\"vendor_id\", \"trip_sum\"]\n    for vendor in vendors_list:",
+        "detail": "step_two.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_total_distance_by_vendor",
+        "kind": 2,
+        "importPath": "step_two.main",
+        "description": "step_two.main",
+        "peekOfCode": "def get_total_distance_by_vendor(file_json):\n    df_json = spark.read.json(file_json).select(\"vendor_id\", \"trip_distance\")\n    vendors_list = get_vendors_ids_list(\"data-vendor_lookup.csv\")\n    data = []\n    columns = [\"vendor_id\", \"trip_sum\"]\n    for vendor in vendors_list:\n        df_by_vendor = df_json.filter(df_json.vendor_id == vendor)\n        trip_sum = df_by_vendor.select(sum(\"trip_distance\"))\n        row = [vendor, trip_sum.collect()[0][0]]\n        data.append(row)",
+        "detail": "step_two.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_vendor_with_highest_numbers_of_trip_per_year",
+        "kind": 2,
+        "importPath": "step_two.main",
+        "description": "step_two.main",
+        "peekOfCode": "def get_vendor_with_highest_numbers_of_trip_per_year(trips_by_year_file):\n    # lendo json e selcionando as colunas que serão utilizadas\n    df_json = spark.read.json(trips_by_year_file).select(\"vendor_id\", \"trip_distance\")\n    # lista de vendor_ids a partir do lookup para iterador\n    vendors_list = get_vendors_ids_list(\"data-vendor_lookup.csv\")\n    # criando dataframe com as quantidades de viagens de cada vendor\n    data = []\n    columns = [\"vendor_id\", \"trip_qtd\"]\n    for vendor in vendors_list:\n        # para cada vendor_id da lista é criada uma linha com a respectiva quantidade total de viagens",
+        "detail": "step_two.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_week_with_the_most_trips_per_year",
+        "kind": 2,
+        "importPath": "step_two.main",
+        "description": "step_two.main",
+        "peekOfCode": "def get_week_with_the_most_trips_per_year(trips_of_year_file):\n    df_json = spark.read.json(trips_of_year_file)\n    df_weeks = df_json.select(\n        col(\"pickup_datetime\"), weekofyear(col(\"pickup_datetime\")).alias(\"weekofyear\")\n    )\n    set_weeks = df_weeks.select(collect_set(\"weekofyear\")).collect()[0][0]\n    data = []\n    columns = [\"week\", \"trip_qtd\"]\n    for week in set_weeks:\n        df_week = df_weeks.filter(df_weeks.weekofyear == week)",
+        "detail": "step_two.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_trips_by_week",
+        "kind": 2,
+        "importPath": "step_two.main",
+        "description": "step_two.main",
+        "peekOfCode": "def get_trips_by_week(vendor_id):\n    dates = [(\"2009\", 11), (\"2010\", 43), (\"2011\", 16), (\"2012\", 29)]\n    for index, data in enumerate(dates):\n        year = data[0]\n        week = data[1]\n        df_json = spark.read.json(f\"data-nyctaxi-trips-{year}.json\").select(\n            \"vendor_id\", \"pickup_datetime\"\n        )\n        df_weeks = df_json.select(\n            col(\"vendor_id\"), weekofyear(col(\"pickup_datetime\")).alias(\"weekofyear\")",
+        "detail": "step_two.main",
+        "documentation": {}
+    },
+    {
+        "label": "spark",
+        "kind": 5,
+        "importPath": "step_two.main",
+        "description": "step_two.main",
+        "peekOfCode": "spark = SparkSession.builder.master(\"local\").appName(\"PySpark_01\").getOrCreate()\ndef get_vendors_ids_list(lookup_file):\n    df_lookup = spark.read.csv(lookup_file, header=True, inferSchema=True)\n    vendors = list(df_lookup.select(\"vendor_id\").toPandas()[\"vendor_id\"])\n    return vendors\ndef get_total_distance_by_vendor(file_json):\n    df_json = spark.read.json(file_json).select(\"vendor_id\", \"trip_distance\")\n    vendors_list = get_vendors_ids_list(\"data-vendor_lookup.csv\")\n    data = []\n    columns = [\"vendor_id\", \"trip_sum\"]",
+        "detail": "step_two.main",
         "documentation": {}
     }
 ]
