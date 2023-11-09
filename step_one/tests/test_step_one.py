@@ -53,20 +53,12 @@ class StepOneTests(unittest.TestCase):
         self.assertEqual(response.tolist(), [4.87, 5, 4.3, 4.4])
 
     def test_rate_weighted_average(self, mock_file):
-        csv_file_path = "fake_path_to_csv.csv"
-        rate_values = get_column_values(csv_file_path, "taxa")
-        contracts_values = get_column_values(csv_file_path, "valor_contrato")
-
-        response = get_rate_weighted_average(contracts_values, rate_values)
+        response = get_rate_weighted_average("valor_contrato", "taxa")
 
         self.assertEqual(response, 4.8738)
 
     def test_get_term_weighted_average(self, mock_file):
-        csv_file_path = "fake_path_to_csv.csv"
-        term_values = get_column_values(csv_file_path, "prazo")
-        contracts_values = get_column_values(csv_file_path, "valor_contrato")
-
-        response = get_term_weighted_average(contracts_values, term_values)
+        response = get_term_weighted_average("valor_contrato", "prazo")
 
         self.assertEqual(response, 10.23)
 
@@ -74,7 +66,7 @@ class StepOneTests(unittest.TestCase):
         self, mock_file
     ):
         csv_file_path = "fake_path_to_csv.csv"
-        bad_payers, not_bad_payers = get_bad_values(csv_file_path)
+        bad_payers_list = get_bad_values(csv_file_path)
 
-        self.assertEqual(bad_payers, 1)
-        self.assertEqual(not_bad_payers, 3)
+        self.assertEqual(bad_payers_list.count(1), 1)
+        self.assertEqual(bad_payers_list.count(0), 3)
